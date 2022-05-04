@@ -5,8 +5,10 @@ export function get_cookie(cookie_name) {
     '(^|;) ?' + cookie_name + '=([^;]*)(;|$)',
   );
 
-  if (results) return unescape(results[2]);
-  else return null;
+  if (results)
+    return unescape(results[2]);
+  else
+    return null;
 }
 
 export async function getUserIP() {
