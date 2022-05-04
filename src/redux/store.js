@@ -1,7 +1,5 @@
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
-import userSlice from "./user/slice";
-import todosAll from "./todos/todosSlice";
 import {
   persistStore,
   persistReducer,
@@ -13,6 +11,9 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+
+import userSlice from "./user/slice";
+import todosAll from "./todos/todosSlice";
 
 const userPersistConfig = {
   key: "user",

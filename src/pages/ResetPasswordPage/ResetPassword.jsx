@@ -1,13 +1,13 @@
-
 import { useEffect, useRef, useState } from 'react';
-import Container from "../../components/Container";
-import s from "./ResetPassword.module.css";
-import { userResetPassword} from '../../redux/user/operation'
 import { useDispatch, useSelector } from 'react-redux';
-import { getError } from '../../redux/user/selectors';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useHistory } from 'react-router-dom';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+import Container from "../../components/Container";
+import { userResetPassword} from '../../redux/user/operation'
+import { getError } from '../../redux/user/selectors';
+
+import s from "./ResetPassword.module.css";
 
 function ResetPassword() {
   const dispatch = useDispatch();
@@ -17,8 +17,6 @@ function ResetPassword() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   
-
-
   const changeEmailValue = (event) => setEmail(event.target.value);
 
   const validateEmail = (email) => {
@@ -27,20 +25,14 @@ function ResetPassword() {
     return response.test(email);
   };
 
-  
-
   const onSubmit = () => {
     !validateEmail(email)
-    ? setEmailError("Некорректно введен e-mail.")
-    : setEmailError("");
+      ? setEmailError("Некорректно введен e-mail")
+      : setEmailError("");
       
-    if (validateEmail(email)) {
-      dispatch(userResetPassword({ email }))
-
-    }
-    
+    if (validateEmail(email))
+      dispatch(userResetPassword({ email }))    
   };
-
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -50,20 +42,17 @@ function ResetPassword() {
       
     if (error) {
       return Notify.failure(`${error.message}`)
-    } else if (error === '' && firstUpdate.current === false) { 
+    } else {
+      if (error === '' && firstUpdate.current === false) {
+        Notify.success("We sent link for change password on your email!");
 
-      Notify.success("We sent link for change password on your email!");
-      
-      setTimeout(() => {
-        history.push('/auth')
-      }, 5000);
-      
-    } 
-    
+        setTimeout(() => {
+          history.push('/auth')
+        }, 5000);
+      } 
+    }
   }, [error])
 
-
-  
   return (
     <div className={s.wrapper}>
       <Container>

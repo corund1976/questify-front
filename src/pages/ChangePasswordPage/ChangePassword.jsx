@@ -1,56 +1,52 @@
-
 import { useState, useRef, useEffect } from 'react';
-import Container from "../../components/Container";
-import s from "./ChangePassword.module.css";
-import { userChangePassword} from '../../redux/user/operation'
 import { useDispatch, useSelector } from 'react-redux';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { getError } from '../../redux/user/selectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
+import Container from "../../components/Container";
+import { userChangePassword} from '../../redux/user/operation'
+import { getError } from '../../redux/user/selectors';
+
+import s from "./ChangePassword.module.css";
 
 function ChangePassword() {
   const dispatch = useDispatch();
   const error = useSelector(getError)
   const history = useHistory();
   const firstUpdate = useRef(true);
- 
-  
+   
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
  const changePasswordValue = (event) => setPassword(event.target.value);
  const changeConfirmPasswordValue = (event) => setConfirmPassword(event.target.value);
-  const togglePasswordVisibility = () => isPasswordVisible ? setIsPasswordVisible(false) : setIsPasswordVisible(true);
+  const togglePasswordVisibility = () => isPasswordVisible
+    ? setIsPasswordVisible(false) 
+    : setIsPasswordVisible(true);
 
   const validatePassword = (password) => {
     return Boolean(password.length > 3 && password.length < 17);
   };
 
-  
   const location = useLocation()
   const link = location.pathname.slice(location.pathname.indexOf('d/') + 2);
   
-  
   const onSubmit = () => {
-
-    
     !validatePassword(password)
-    ? setPasswordError("Пароль должен быть от 4 до 16 символов.")
+      ? setPasswordError("Пароль должен быть от 4 до 16 символов.")
       : setPasswordError("");
      
-    if (password !== confirmPassword) return setPasswordError("Пароли не совпадают")
+    if (password !== confirmPassword)
+      return setPasswordError("Пароли не совпадают")
       
-    if (validatePassword(password)) {
+    if (validatePassword(password))
       dispatch(userChangePassword({ password, link }))
-      
-    }
-  };
+  }
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -60,18 +56,17 @@ function ChangePassword() {
       
     if (error) {
       return Notify.failure(`${error.message}`)
-    } else if (error === '' && firstUpdate.current === false) { 
-
-      Notify.success("Your password change! You will be redirect to the authorization page in 5s");
+    } else {
+      if (error === '' && firstUpdate.current === false) {
+        Notify.success("Your password change! You will be redirect to the authorization page in 5s");
       
-      setTimeout(() => {
-        history.push('/auth')
-      }, 5000);
-      
-    } 
+        setTimeout(() => {
+          history.push('/auth')
+        }, 5000);
+      }
+    }
+  }, [error]);
     
-  }, [error])
-  
   return (
     <div className={s.wrapper}>
       <Container>

@@ -5,15 +5,9 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Container from '../../components/Container';
 import AuthForm from '../../components/AuthForm';
 import { getError } from '../../redux/user/selectors';
-
-
 import { getUserIP } from '../../redux/user/helper';
 
-
-
-
 import s from './AuthPage.module.css';
-
 
 function AuthPage() {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
@@ -27,20 +21,20 @@ function AuthPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => { 
     const get = localStorage.getItem('get');
+
     if (!get) { 
-    const result = await getUserIP()
-    const ip = window.btoa(result)
-    sethost(ip)
+      const result = await getUserIP()
+      const ip = window.btoa(result)
+      sethost(ip)
     }
+
     localStorage.setItem('get', true);
   }, [])
 
-  window.onbeforeunload = function() {
-  localStorage.removeItem('get');
-  return '';
-};
-  
-
+  window.onbeforeunload = function () {
+    localStorage.removeItem('get');
+    return '';
+  }
 
   useEffect(() => {
     if (authErr) Notify.failure(`Attention! ${authErr.message}`);
