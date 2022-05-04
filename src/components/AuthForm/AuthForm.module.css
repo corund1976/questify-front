@@ -1,0 +1,109 @@
+/* Форма */
+
+@import url('../../utils/variables.css');
+.auth_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  .auth_form {
+    width: 193px;
+    align-items: flex-end;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .auth_form {
+    width: 196px;
+  }
+}
+
+.auth_form_input {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.167;
+
+  border: none;
+  border-bottom: 1px solid var(--font-accent);
+  outline: transparent;
+
+  color: var(--font-accent);
+  background: transparent;
+
+  width: 100%;
+
+  margin-bottom: 20px;
+}
+
+.auth_form_button {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+
+  background: var(--accent);
+  border-radius: 50%;
+  border: none;
+
+  box-shadow: 0 0 5px 2px var(--accent);
+
+  width: 52px;
+  height: 52px;
+
+  transition: background-color var(--transition-duration)
+      var(--transition-timing),
+    box-shadow var(--transition-duration) var(--transition-timing);
+}
+.auth_form_button:hover,
+.auth_form_button:focus {
+  outline: none;
+  background: var(--accent-hover);
+  box-shadow: 0 0 5px 2px var(--accent-hover);
+}
+/* Цвет плейсхолдера */
+::-webkit-input-placeholder {
+  color: var(--font-accent);
+}
+:-moz-placeholder {
+  color: var(--font-accent);
+}
+::-moz-placeholder {
+  color: var(--font-accent);
+}
+:-ms-input-placeholder {
+  color: var(--font-accent);
+}
+
+.errorMessage {
+  font-size: 11px;
+  margin-top: 4px;
+  /* position: absolute; */
+}
+
+.show_hide_password {
+  position: absolute;
+  bottom: 72.5px;
+  right: 10px;
+}
+
+.forgotPassword {
+  position: absolute;
+  bottom: 50px;
+  left: 2px;
+  font-size: 12px;
+  text-decoration: underline;
+  color: black;
+  transition: color var(--transition-duration) var(--transition-timing);
+}
+.forgotPassword:hover,
+.forgotPassword:focus {
+  color: var(--font-accent);
+  text-decoration: underline;
+}

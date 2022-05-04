@@ -1,0 +1,166 @@
+.headerSection {
+  background-color: var(--secondary);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.header {
+  box-shadow: 0px 4px 4px rgba(36, 42, 55, 0.1);
+
+  padding-left: 15px;
+  padding-right: 15px;
+
+  height: 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .header {
+    padding-left: 50px;
+    padding-right: 50px;
+
+    height: 70px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .header {
+    padding-left: 70px;
+    padding-right: 70px;
+
+    height: 70px;
+  }
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  color: var(--font-accent);
+  cursor: default;
+}
+@media screen and (min-width: 768px) {
+  .logo {
+    font-size: 21px;
+    line-height: 21px;
+  }
+}
+
+.userData {
+  align-items: center;
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .userData {
+    display: flex;
+  }
+}
+
+.avatarLetter {
+  font-weight: 700;
+}
+
+.userDataMobile {
+  display: flex;
+}
+
+.userName {
+  font-size: 17px;
+  line-height: 17px;
+  letter-spacing: 0.02em;
+  color: var(--font-tertiary);
+  margin-left: 10px;
+}
+
+.avatarMobile {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+@media screen and (min-width: 768px) {
+  .avatarMobile {
+    display: none;
+  }
+}
+
+.challengeIcon {
+  background-color: transparent;
+  border: none;
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  .challengeIcon {
+    margin-right: 30px;
+  }
+}
+
+.challengeIconSvg {
+  fill: var(--font-accent);
+  width: 57px;
+  height: 57px;
+}
+
+.BtnLogout {
+  background-color: transparent;
+  border: none;
+}
+
+.svgLogout {
+  fill: #3e4e6c;
+  transition: fill var(--transition-duration) var(--transition-timing);
+}
+
+.svgLogout:hover,
+.svgLogout:focus {
+  fill: var(--font-accent);
+}
+
+/* ------------------------MODAL WINDOW------------------------------------ */
+.btnDiv {
+  align-items: center;
+  text-align: center;
+}
+
+.modalTitle {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #414553;
+  margin-bottom: 30px;
+}
+.modalBtn {
+  width: 100px;
+  height: 44px;
+  background: transparent;
+  border-radius: 16px;
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+  box-sizing: border-box;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color var(--transition-timing)
+      var(--transition-function),
+    color var(--transition-timing) var(--transition-function);
+}
+@media screen and (min-width: 768px) {
+  .modalBtn {
+    width: 125px;
+    height: 44px;
+  }
+}
+
+.modalBtn:not(:last-child) {
+  margin-right: 15px;
+}
+
+.modalBtn:hover,
+.modalBtn:focus {
+  background: var(--secondary);
+  color: var(--background-card);
+}

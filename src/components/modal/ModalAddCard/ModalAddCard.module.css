@@ -1,0 +1,135 @@
+.backdrop {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  cursor: default;
+  width: 98vw;
+  height: 96vh;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.exitModal {
+  position: fixed;
+  display: block;
+  border-radius: 20px;
+  width: 210px;
+  height: 140px;
+  /* background-color: #939fb3; */
+  background-color: transparent;
+  padding-top: 30px;
+  right: -60px;
+  bottom: 110px;
+}
+@media screen and (min-width: 768px) {
+  .exitModal {
+    width: 230px;
+    height: 145px;
+    right: -65px;
+    bottom: 140px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .exitModal {
+    width: 80px;
+    height: 150px;
+    bottom: 140px;
+    right: 35px;
+  }
+}
+
+.closeBtn {
+  border-color: transparent;
+  background-color: transparent;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.addCardTitle {
+  font-size: 13px;
+  width: 190px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: 'HelveticaNeueCyr-Bold';
+}
+@media screen and (min-width: 1280px) {
+  .addCardTitle {
+    font-size: 14px;
+    width: 200px;
+  }
+}
+
+.btnDiv {
+  margin-top: 10px;
+  display: block;
+  width: 80px;
+  margin: 0 auto;
+}
+
+.challengeIconBtn {
+  margin-top: 5px;
+}
+
+.challengeIconBtn,
+.iconStarBtn {
+  border: none;
+  background-color: transparent;
+  width: 80px;
+}
+
+.challengeIconSvg,
+.IconStarSvg {
+  fill: var(--font-accent);
+  filter: drop-shadow(1px 2px 3px rgb(0 0 0 / 0.4));
+  transition: fill var(--transition-duration) var(--transition-timing);
+}
+
+.challengeIconSvg {
+  width: 45px;
+  height: 45px;
+  margin-bottom: -5px;
+}
+
+.challengeIconBtn:hover .challengeIconSvg,
+.challengeIconBtn:focus .challengeIconSvg,
+.iconStarBtn:hover .IconStarSvg,
+.iconStarBtn:focus .IconStarSvg {
+  fill: var(--accent);
+}
+
+@media screen and (min-width: 768px) {
+  .challengeIconSvg {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.IconStarSvg {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 768px) {
+  .IconStarSvg {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* .challengeIconSvg:hover,
+.challengeIconSvg:focus,
+.IconStarSvg:hover,
+.IconStarSvg:hover {
+  fill: var(--accent);
+} */
+
+.svgtTitle {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+}

@@ -1,0 +1,41 @@
+.ButtonAddCard {
+  position: fixed;
+  right: 15px;
+  bottom: 21px;
+
+  font-size: 30px;
+  font-family: "HelveticaNeueCyr-Light";
+
+  color: white;
+  background-color: var(--accent);
+
+  border-radius: 50%;
+  border: 1px solid transparent;
+  box-shadow: 0 0 5px 2px #ff851c;
+
+  transition: background-color var(--transition-duration) var(--transition-timing),
+  box-shadow var(--transition-duration) var(--transition-timing);
+
+  width: 52px;
+  height: 52px;
+  z-index: 150;
+}
+.ButtonAddCard:hover,
+.ButtonAddCard:focus {
+  outline: none;
+   background: var(--accent-hover);
+   box-shadow: 0 0 5px 2px var(--accent-hover);
+}
+@media screen and (min-width: 768px) {
+  .ButtonAddCard {
+    right: 23px;
+    bottom: 42px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .ButtonAddCard {
+    right: 46px;
+    bottom: 40px;
+  }
+}
+
