@@ -44,9 +44,6 @@ export const userLogin = createAsyncThunk(
 
   async ({ host, ...user }, thunkAPI) => {
     try {
-      console.log('host => ', host);
-      console.log('user => ', user);
-      console.log('user => ', { ...user });
       const { data } = await axios.post(
         `${BASE_URL}/users/login`,
         user,
@@ -57,12 +54,10 @@ export const userLogin = createAsyncThunk(
           },
         }
       );
-      console.log('data =>', data);
       localStorage.setItem('token', data.accessToken);
       localStorage.setItem('isloggedIn', true);
 
       document.cookie = `refreshToken=${data.refreshToken}`;
-      console.log('document.cookie', document.cookie);
 
       token.set(data.accessToken);
       return data;
