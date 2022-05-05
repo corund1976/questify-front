@@ -6,11 +6,11 @@ import { addCardToState } from '../../../redux/todos/operation';
 
 const ModalAddCard = ({ toggleModal }) => {
   const dispatch = useDispatch();
-  const clickBackdrop = event => {
-    if (event.currentTarget === event.target) {
-      toggleModal();
-    }
-  };
+  // const clickBackdrop = event => {
+  //   if (event.currentTarget === event.target) {
+  //     toggleModal();
+  //   }
+  // };
 
   const addCard = e => {
     if (e.currentTarget.className.toString().includes('challenge')) {

@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { showTodosDone } from "../../redux/todos/operation";
-import { todosDone } from "../../redux/todos/todosSelector";
-import Card from "../Card";
+import { useState } from "react";
+// import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 
+// import { showTodosDone } from "../../redux/todos/operation";
+import { todosDone } from "../../redux/todos/todosSelector";
+
+import Card from "../Card";
 import Icon from "../Icon";
+
 import s from "./DoneSection.module.css";
 
 const DoneSection = () => {

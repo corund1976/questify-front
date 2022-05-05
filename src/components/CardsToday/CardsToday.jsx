@@ -6,17 +6,17 @@ import s from "./CardsToday.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { newTodoCard, todosActive } from "../../redux/todos/todosSelector";
 import { useEffect, useState } from "react";
-import ChallengeCard from "../modal/ChallengeCard/ChallengeCard";
+// import ChallengeCard from "../modal/ChallengeCard/ChallengeCard";
 
-import data from "./temporaryData.json";
+// import data from "./temporaryData.json";
 
 import {
-  deleteTodo,
-  changeTodo,
+  // deleteTodo,
+  // changeTodo,
   showTodosActive,
   showTodosDone,
 } from "../../redux/todos/operation";
-import { date } from "check-types";
+// import { date } from "check-types";
 
 
 const CardsToday = () => {
@@ -24,6 +24,7 @@ const CardsToday = () => {
   useEffect(() => {
     dispatch(showTodosActive());
     dispatch(showTodosDone());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const todos = useSelector(todosActive);
@@ -33,6 +34,7 @@ const CardsToday = () => {
   // const todos = newTodo ? [newTodo, ...initialTodos] : initialTodos;
 
   const [isChallenge, setChallenger] = useState(true);
+  console.log('CardsToday isChallenge=', isChallenge);
   // const [cards, setCards] = useState(todos);
 
   function takeData(card) {
@@ -73,11 +75,15 @@ const CardsToday = () => {
             isNewCard={isNewCard}
           />
         )}
-        {todos?.map(card => {
+        {todos?.forEach(card => {
           if (checkIfToday(card.time)) {
-            return <Card key={card._id}
-              card={card}
-          data={takeData} />
+            return (
+              <Card
+                key={card._id}
+                card={card}
+                data={takeData}
+              />
+            )
           }
         })}
       </ul>
@@ -93,11 +99,15 @@ const CardsToday = () => {
             isNewCard={isNewCard}
           />
         )} */}
-        {todos?.map(card => {
+        {todos?.forEach(card => {
           if (!checkIfToday(card.time)) {
-            return <Card key={card._id}
-              card={card}
-          data={takeData} />
+            return (
+              <Card
+                key={card._id}
+                card={card}
+                data={takeData}
+              />
+            )
           }
         })}
       </ul>

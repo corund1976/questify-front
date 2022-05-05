@@ -1,17 +1,17 @@
-import s from "./ButtonAddCard.module.css";
-
-import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import {
   addCardToState,
-  addTodo,
-  showTodosActive,
-  showTodosDone,
+  // addTodo,
+  // showTodosActive,
+  // showTodosDone,
 } from "../../redux/todos/operation";
-import "../../utils/variables.css";
-import Card from "../Card";
+// import Card from "../Card";
 import ModalAddCard from "../modal/ModalAddCard/ModalAddCard";
+
+import "../../utils/variables.css";
+import s from "./ButtonAddCard.module.css";
 
 const ButtonAddCard = () => {
   const [showModal, setShowModal] = useState(false);

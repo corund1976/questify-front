@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   deleteTodo,
   changeTodo,
@@ -7,20 +8,21 @@ import {
   addNewCard,
   changeTodoStatus,
 } from '../../redux/todos/operation';
-import '../../utils/variables.css';
+import { newTodoCard } from '../../redux/todos/todosSelector';
 
 import DifficultModal from '../modal/DifficultModal';
 import DeleteModule from '../modal/modalDelete';
-import s from './Card.module.css';
 import CategoryModal from '../modal/CategoryModal';
+
 import TimeDatePicker from '../TimePickers';
 import dateAdapted from '../TimePickers/dateAdapted';
+import CompletedChallenge from '../CompletedChallenge';
+import CompletedCard from '../CompletedCard/CompletedCard';
 
 import saveIcon from '../../images/save.svg';
-import CompletedCard from '../CompletedCard/CompletedCard';
-import { newTodoCard } from '../../redux/todos/todosSelector';
 import trophy from './trophy.svg';
-import CompletedChallenge from '../CompletedChallenge';
+// import '../../utils/variables.css';
+import s from './Card.module.css';
 
 const Card = ({ data, card, isNewCard }) => {
 
@@ -44,6 +46,7 @@ const Card = ({ data, card, isNewCard }) => {
     let coverct = new Date(card.time);
     coverct = dateAdapted(coverct);
     settimeDate(coverct);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function onclick() {

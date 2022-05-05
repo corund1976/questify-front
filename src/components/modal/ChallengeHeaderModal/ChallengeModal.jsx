@@ -1,22 +1,22 @@
-import s from './ChallengeModal.module.css';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
 
 import { todosActive } from '../../../redux/todos/todosSelector';
-import { showTodosActive } from '../../../redux/todos/operation';
-
+// import { showTodosActive } from '../../../redux/todos/operation';
 import Card from '../../Card';
+
+import s from './ChallengeModal.module.css';
 
 const ChallengeModal = ({ challengeModal }) => {
   const todos = useSelector(todosActive);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const clickBackdrop = event => {
-    if (event.currentTarget !== event.target) {
-      challengeModal();
-    }
-  };
+  // const clickBackdrop = event => {
+  //   if (event.currentTarget !== event.target) {
+  //     challengeModal();
+  //   }
+  // };
 
   /*   useEffect(() => {
     dispatch(showTodosActive());

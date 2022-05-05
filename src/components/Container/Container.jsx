@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { showTodos } from "../../redux/todos/operation";
+// import { useEffect } from "react";
+// import { useDispatch } from "react-redux";
+// import { showTodos } from "../../redux/todos/operation";
 import s from "./Container.module.css";
 
 function Container({ children }) {

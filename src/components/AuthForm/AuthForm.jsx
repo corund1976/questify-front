@@ -19,11 +19,13 @@ function AuthForm({ showRegisterForm, host }) {
 
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  console.log('AuthForm passwordError=', passwordError);
 
   const [showRegForm, setShowRegForm] = useState(showRegisterForm);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const authErr = useSelector(getError);
+  console.log('AuthForm authErr=', authErr);
 
   useEffect(() => {
     setShowRegForm(showRegisterForm);
