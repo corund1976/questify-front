@@ -4,8 +4,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from './interceptor';
 import { get_cookie } from './helper';
 
-const BASE_URL = 'http://questify-project.herokuapp.com/api/users';
-// const BASE_URL = 'http://localhost:8083/api/users';
+// const BASE_URL = 'https://questify-back.herokuapp.com/api';
+const BASE_URL = 'http://localhost:3030/api';
 
 const token = {
   set(token) {
@@ -20,15 +20,17 @@ export const userRegistration = createAsyncThunk(
   'auth/registration',
 
   async ({ host, ...user }, thunkAPI) => {
-
     try {
-      const { data } = await axios.post(`${BASE_URL}/registration`, user, {
-        withCredentials: true,
-        headers: {
-          hrmt: `${host}`,
-        },
-      });
-
+      const { data } = await axios.post(
+        `${BASE_URL}/users/registration`,
+        user,
+        {
+          withCredentials: true,
+          headers: {
+            hrmt: `${host}`,
+          },
+        }
+      );
       token.set(data.accessToken);
       return data;
     } catch (error) {
@@ -36,23 +38,31 @@ export const userRegistration = createAsyncThunk(
     }
   },
 );
+
 export const userLogin = createAsyncThunk(
   'auth/login',
 
   async ({ host, ...user }, thunkAPI) => {
-
     try {
-      const { data } = await axios.post(`${BASE_URL}/login`, user, {
-        withCredentials: true,
-        headers: {
-          hrmt: `${host}`,
-        },
-      });
-
+      console.log('host => ', host);
+      console.log('user => ', user);
+      console.log('user => ', { ...user });
+      const { data } = await axios.post(
+        `${BASE_URL}/users/login`,
+        user,
+        {
+          withCredentials: true,
+          headers: {
+            hrmt: `${host}`,
+          },
+        }
+      );
+      console.log('data =>', data);
       localStorage.setItem('token', data.accessToken);
       localStorage.setItem('isloggedIn', true);
 
       document.cookie = `refreshToken=${data.refreshToken}`;
+      console.log('document.cookie', document.cookie);
 
       token.set(data.accessToken);
       return data;
@@ -71,13 +81,15 @@ export const userLogout = createAsyncThunk(
       localStorage.removeItem('isloggedIn');
 
       const token = get_cookie('refreshToken');
-      const { data } = await api.get(`${BASE_URL}/logout`, {
-        withCredentials: true,
-        headers: {
-          update: `${token}`,
-        },
-      });
-
+      const { data } = await api.get(
+        `${BASE_URL}/users/logout`,
+        {
+          withCredentials: true,
+          headers: {
+            update: `${token}`,
+          },
+        }
+      );
       document.cookie = 'refreshToken=-1;expires=Thu, 01 Jan 1970 00:00:01 GMT';
       // token.unset();
       localStorage.removeItem('token');
@@ -112,13 +124,15 @@ export const userRefresh = createAsyncThunk(
 
     try {
       const token = get_cookie('refreshToken');
-      const { data } = await axios.get(`${BASE_URL}/refresh`, {
-        withCredentials: true,
-        headers: {
-          update: `${token}`,
-        },
-      });
-
+      const { data } = await axios.get(
+        `${BASE_URL}/users/refresh`,
+        {
+          withCredentials: true,
+          headers: {
+            update: `${token}`,
+          },
+        }
+      );
       localStorage.setItem('token', data.accessToken);
       document.cookie = `refreshToken=${data.refreshToken}`;
 
@@ -154,8 +168,10 @@ export const userResetPassword = createAsyncThunk(
   'auth/reset-password',
   async (user, thunkAPI) => {
     try {
-      const { data } = await axios.post(`${BASE_URL}/reset-password`, user);
-
+      const { data } = await axios.post(
+        `${BASE_URL}/users/reset-password`,
+        user
+      );
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -168,8 +184,10 @@ export const userChangePassword = createAsyncThunk(
   async ({ password, link }, thunkAPI) => {
 
     try {
-      const { data } = await axios.post(`${BASE_URL}/change-password/${link}`, { password });
-
+      const { data } = await axios.post(
+        `${BASE_URL}/users/change-password/${link}`,
+        { password }
+      );
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

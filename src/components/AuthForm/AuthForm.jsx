@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Notiflix from 'notiflix';
-import { getError } from '../../redux/user/selectors';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
+import { getError } from '../../redux/user/selectors';
 import { userLogin, userRegistration } from '../../redux/user/operation';
 
 import s from './AuthForm.module.css';
-import { Link } from 'react-router-dom';
 
 function AuthForm({ showRegisterForm, host }) {
   const dispatch = useDispatch();
@@ -70,7 +70,6 @@ function AuthForm({ showRegisterForm, host }) {
 
   const onLogin = event => {
     event.preventDefault();
-    
     
     !validateEmail(email)
       ? setEmailError('Некорректный e-mail')

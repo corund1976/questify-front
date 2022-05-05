@@ -46,6 +46,7 @@ const Header = () => {
   useEffect(() => {
     if (err) Notify.failure(`Attention! ${err.message}`);
   }, [err]);
+  
   const onLogout = () => {
     dispatch(userLogout({ email: user.email, password: user.password }));
   };

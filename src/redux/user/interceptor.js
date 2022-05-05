@@ -26,7 +26,7 @@ api.interceptors.response.use(
 
       try {
         const response = await axios.get(
-          "http://questify-project.herokuapp.com/api/users",
+          "http://questify-back.herokuapp.com/api/users",
           {
             withCredentials: true,
           }
