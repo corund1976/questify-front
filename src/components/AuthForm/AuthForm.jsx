@@ -50,7 +50,6 @@ function AuthForm({ showRegisterForm, host }) {
   const onRegistration = event => {
     event.preventDefault();
     
-
     !validateEmail(email)
       ? setEmailError('Некорректный e-mail')
       : setEmailError('');

@@ -1,17 +1,17 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from '../user/interceptor';
-const BASE_URL = 'https://questify-back.herokuapp.com/api';
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//   },
+//   unset() {
+//     axios.defaults.headers.common.Authorization = '';
+//   },
+// };
 
 export const addCardToState = createAsyncThunk(
   'todos/addCard',
@@ -135,7 +135,7 @@ export const deleteTodo = createAsyncThunk(
   'todo/delete',
   async (id, thunkAPI) => {
     try {
-      const { data } = await api.delete(
+      await api.delete(
         `${BASE_URL}/todos/remove/${id}`,
         id,
       );

@@ -14,7 +14,6 @@ const initialState = {
     name: null,
     email: null,
     isActivated: false,
-    name: null,
     isLoggedIn: false,
   },
   token: null,
@@ -31,7 +30,7 @@ const userSlice = createSlice({
       state.token = action.payload.accessToken;
       state.userinfo.isLoggedIn = true;
     },
-    
+
     [userLogin.rejected]: (state, action) => {
       state.error = {
         message: action.payload.response.data.message,

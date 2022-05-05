@@ -1,5 +1,4 @@
 import s from "./difficultModal.module.css";
-import style from "../../../utils/variables.css";
 
 const DifficultModal = ({ change }) => {
   function onchange(e) {

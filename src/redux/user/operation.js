@@ -4,8 +4,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from './interceptor';
 import { get_cookie } from './helper';
 
-// const BASE_URL = 'https://questify-back.herokuapp.com/api';
-const BASE_URL = 'http://localhost:3030/api';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+console.log('BASE_URL', BASE_URL);
 
 const token = {
   set(token) {
