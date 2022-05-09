@@ -21,6 +21,7 @@ function AuthPage() {
   useEffect(() => {
     async function fetchData() {
       const get = localStorage.getItem('get');
+      console.log('get', get);
     
       if (!get) { 
         const result = await getUserIP()
