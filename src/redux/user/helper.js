@@ -18,26 +18,20 @@ export async function getUserIP() {
     console.log('redux/user/helper.js getUserIP');
 
     async function test() {
-      let response = await fetch("https://www.cloudflare.com/cdn-cgi/trace", { mode: "cors" });
-      let text = await response.text();
-      console.log(text)
+      const response = await fetch("https://www.cloudflare.com/cdn-cgi/trace", { mode: "cors" });
+
+      const ip = await response.data
+        .trim()
+        .split('\n')
+        .filter(item => item.includes('ip'))[0];
+
+      const res = ip.slice(ip.indexOf('=') + 1);
+      console.log('redux/user/helper.js axios.get https://www.cloudflare.com/cdn-cgi/trace => ', res);
+      return res;
     }
     test()
 
-    const response = await axios.get(
-      'https://www.cloudflare.com/cdn-cgi/trace',
-      { mode: "cors" }
-    );
 
-    console.log('redux/user/helper.js axios.get https://www.cloudflare.com/cdn-cgi/trace => ', response);
-    const ip = await response.data
-      .trim()
-      .split('\n')
-      .filter(item => item.includes('ip'))[0];
-
-    const res = ip.slice(ip.indexOf('=') + 1);
-
-    return res;
   } catch (error) {
     return false;
   }
