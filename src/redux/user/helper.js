@@ -1,12 +1,10 @@
-// import axios from 'axios';
-
 export function get_cookie(cookie_name) {
-  console.log('redux/user/helper.js function "get_cookie(cookie_name)" => cookie_name=', cookie_name);
+  console.log('redux/user/helper.js function "get_cookie(cookie_name)"');
 
-  var results = document.cookie.match(
+  const results = document.cookie.match(
     '(^|;) ?' + cookie_name + '=([^;]*)(;|$)',
   );
-  console.log('redux/user/helper.js function "get_cookie(cookie_name)" => results=', unescape(results[2]));
+
   if (results)
     return unescape(results[2]);
   else
@@ -21,6 +19,7 @@ export async function getUserIP() {
       "https://www.cloudflare.com/cdn-cgi/trace",
       { mode: "cors" }
     );
+
     const text = await response.text();
     const textStringWithIP = text
       .trim()
