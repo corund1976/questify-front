@@ -11,7 +11,7 @@ import s from './AuthPage.module.css';
 
 function AuthPage() {
   console.log('AuthPage.jsx');
-  
+
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [host, sethost] = useState('')
 
@@ -23,12 +23,17 @@ function AuthPage() {
   useEffect(() => {
     async function fetchData() {
       const get = localStorage.getItem('get');
-      console.log('get', get);
+      console.log('AuthPage.jsx => get', get);
     
       if (get === null) { 
         const result = await getUserIP()
-        console.log('result', result);
+
+        console.log('AuthPage.jsx => getUserIP()', result);
+
         const ip = window.btoa(result)
+        
+        console.log('AuthPage.jsx =>  ip', ip);
+        
         sethost(ip)
       }
     
