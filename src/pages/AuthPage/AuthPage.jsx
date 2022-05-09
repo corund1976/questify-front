@@ -23,11 +23,12 @@ function AuthPage() {
   useEffect(() => {
     async function fetchData() {
       const get = localStorage.getItem('get');
-      console.log('AuthPage.jsx => get', get);
+      console.log('AuthPage.jsx => localStorage.getItem("get")', get);
     
       if (get === null) { 
         const result = await getUserIP()
         const ip = window.btoa(result)
+
         sethost(ip)
       }
     
