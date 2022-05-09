@@ -17,6 +17,13 @@ export async function getUserIP() {
   try {
     console.log('redux/user/helper.js getUserIP');
 
+    async function test() {
+      let response = await fetch("https://www.cloudflare.com/cdn-cgi/trace", { mode: "cors" });
+      let text = await response.text();
+      console.log(text)
+    }
+    test()
+
     const response = await axios.get(
       'https://www.cloudflare.com/cdn-cgi/trace',
       { mode: "cors" }
