@@ -19,7 +19,7 @@ export async function getUserIP() {
 
     async function fetchCloudflare() {
       const response = await fetch("https://www.cloudflare.com/cdn-cgi/trace", { mode: "cors" });
-      console.log('redux/user/helper.js axios.get https://www.cloudflare.com/cdn-cgi/trace => ', response);
+      console.log('redux/user/helper.js axios.get https://www.cloudflare.com/cdn-cgi/trace => response.ip', response.ip);
 
 
       const ip = await response.data
