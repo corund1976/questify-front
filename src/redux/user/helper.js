@@ -19,6 +19,7 @@ export async function getUserIP() {
 
     async function fetchCloudflare() {
       const response = await fetch("https://www.cloudflare.com/cdn-cgi/trace", { mode: "cors" });
+      console.log('ответ от клаудфлейр');
       console.log(response);
 
       const ip = response
