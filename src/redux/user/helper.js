@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 export function get_cookie(cookie_name) {
   console.log('redux/user/helper.js function "get_cookie(cookie_name)" => cookie_name=', cookie_name);
@@ -19,7 +19,6 @@ export async function getUserIP() {
 
     async function fetchCloudflare() {
       const response = await fetch("https://www.cloudflare.com/cdn-cgi/trace", { mode: "cors" });
-      console.log('ответ от клаудфлейр');
       console.log(response);
 
       const ip = response
