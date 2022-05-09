@@ -17,20 +17,23 @@ function AuthPage() {
   const showLogForm = () => setShowRegisterForm(false);
 
   const authErr = useSelector(getError);
- 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(async () => { 
-    const get = localStorage.getItem('get');
 
-    if (!get) { 
-      const result = await getUserIP()
-      const ip = window.btoa(result)
-      sethost(ip)
+  useEffect(() => {
+    async function fetchData() {
+      const get = localStorage.getItem('get');
+    
+      if (!get) { 
+        const result = await getUserIP()
+        const ip = window.btoa(result)
+        sethost(ip)
+      }
+    
+      localStorage.setItem('get', true);
     }
-
-    localStorage.setItem('get', true);
+    
+    fetchData()
   }, [])
-
+  
   window.onbeforeunload = function () {
     localStorage.removeItem('get');
     return '';
