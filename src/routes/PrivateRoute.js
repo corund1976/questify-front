@@ -5,15 +5,12 @@ import { getUser } from '../redux/user/selectors';
 
 function PrivateRoute({ children, redirectTo = '/auth', ...routeProps }) {
   const user = useSelector(getUser);
-  
+
   return (
     <Route {...routeProps}>
-      {
-        user.isActivated
-          ?
-          children
-          :
-          <Redirect to = {redirectTo} />
+      {user.isActivated
+        ? children
+        : <Redirect to={redirectTo} />
       }
     </Route>
   );

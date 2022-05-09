@@ -9,12 +9,9 @@ function PublicRoute({ children, redirectTo = '/home', restricted = false, ...ro
 
   return (
     <Route {...routeProps}>
-      {
-        shouldRedirect
-          ?
-          <Redirect to = {redirectTo} />
-          :
-          children
+      {shouldRedirect
+        ? <Redirect to={redirectTo} />
+        : children
       }
     </Route>
   );

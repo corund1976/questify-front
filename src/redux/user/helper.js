@@ -17,6 +17,7 @@ export async function getUserIP() {
       'https://www.cloudflare.com/cdn-cgi/trace',
     );
 
+    console.log('redux/user/helper.js cloudflare response => ', response);
     const ip = await response.data
       .trim()
       .split('\n')
