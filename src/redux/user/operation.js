@@ -5,7 +5,6 @@ import api from './interceptor';
 import { get_cookie } from './helper';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-console.log('redux/user/operation.js BASE_URL => ', BASE_URL);
 
 const token = {
   set(token) {

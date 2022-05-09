@@ -10,6 +10,8 @@ import { getUserIP } from '../../redux/user/helper';
 import s from './AuthPage.module.css';
 
 function AuthPage() {
+  console.log('AuthPage.jsx');
+  
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [host, sethost] = useState('')
 

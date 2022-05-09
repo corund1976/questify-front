@@ -4,6 +4,8 @@ import { Route, Redirect } from 'react-router-dom';
 import { getUser } from '../redux/user/selectors';
 
 function PublicRoute({ children, redirectTo = '/home', restricted = false, ...routeProps }) {
+  console.log('PublicRoute.js');
+
   const user = useSelector(getUser);
   const shouldRedirect = user.isActivated && restricted;
 

@@ -4,6 +4,8 @@ import { Route, Redirect } from 'react-router-dom';
 import { getUser } from '../redux/user/selectors';
 
 function PrivateRoute({ children, redirectTo = '/auth', ...routeProps }) {
+  console.log('PrivateRoute.js');
+
   const user = useSelector(getUser);
 
   return (

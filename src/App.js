@@ -22,6 +22,8 @@ const ChangePassword = lazy(() =>
 );
 
 function App() {
+  console.log("App.js");
+
   const dispatch = useDispatch(userRefresh);
   // const isUserLoggedIn = useSelector(getIsLoggedIn);
   const isUserLoggedIn = localStorage.getItem('isloggedIn');

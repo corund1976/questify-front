@@ -11,6 +11,8 @@ import { userLogin, userRegistration } from '../../redux/user/operation';
 import s from './AuthForm.module.css';
 
 function AuthForm({ showRegisterForm, host }) {
+  console.log('AuthForm.jsx');
+  
   const dispatch = useDispatch();
   
   const [name, setName] = useState('');
@@ -66,7 +68,6 @@ function AuthForm({ showRegisterForm, host }) {
 
       dispatch(userRegistration({ name, email, password, host }))
       Notiflix.Notify.info('На email отправлено письмо для подтверждения регистрации');
-
     }
   };
 
@@ -82,6 +83,7 @@ function AuthForm({ showRegisterForm, host }) {
       : setPasswordError('');
 
     if (validateEmail(email) && validatePassword(password)) {
+      console.log('before dispatch => ', email, password, host);
       dispatch(userLogin({ email, password, host }))
     }
   };
