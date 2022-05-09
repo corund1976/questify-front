@@ -21,16 +21,19 @@ export async function getUserIP() {
       const response = await fetch("https://www.cloudflare.com/cdn-cgi/trace", { mode: "cors" });
       console.log(response);
 
-      const ip = response
-        .trim()
-        .split('\n')
-        .filter(item => item.includes('ip'))[0];
+      const text = await response.text();
+      console.log(text);
 
-      console.log('ip', ip);
+      // const ip = response
+      //   .trim()
+      //   .split('\n')
+      //   .filter(item => item.includes('ip'))[0];
 
-      const res = ip.slice(ip.indexOf('=') + 1);
-      console.log('res', res);
-      return res;
+      // console.log('ip', ip);
+
+      // const res = ip.slice(ip.indexOf('=') + 1);
+      // console.log('res', res);
+      return text;
     }
     fetchCloudflare()
   } catch (error) {
