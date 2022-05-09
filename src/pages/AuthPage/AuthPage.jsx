@@ -25,6 +25,7 @@ function AuthPage() {
     
       if (!get) { 
         const result = await getUserIP()
+        console.log('result', result);
         const ip = window.btoa(result)
         sethost(ip)
       }
