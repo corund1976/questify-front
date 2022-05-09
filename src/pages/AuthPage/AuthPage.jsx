@@ -23,7 +23,7 @@ function AuthPage() {
       const get = localStorage.getItem('get');
       console.log('get', get);
     
-      if (!get) { 
+      if (get === null) { 
         const result = await getUserIP()
         console.log('result', result);
         const ip = window.btoa(result)
