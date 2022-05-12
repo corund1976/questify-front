@@ -2,8 +2,8 @@ import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch, Redirect } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
-import { userRefresh } from './redux/user/operation';
 
+import { userRefresh } from './redux/user/operation';
 import { routes, PublicRoute, PrivateRoute } from './routes';
 
 import './App.css';
@@ -32,7 +32,7 @@ function App() {
     if (isUserLoggedIn) {
       dispatch(userRefresh());
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   return (

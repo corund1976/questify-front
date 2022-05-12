@@ -1,6 +1,6 @@
-import { createPortal } from "react-dom";
-import { useEffect } from "react";
-import PropTypes from "prop-types";
+// import { createPortal } from "react-dom";
+// import { useEffect } from "react";
+// import PropTypes from "prop-types";
 import s from "./Modal.module.css";
 
 export default function Modal({ children }) {

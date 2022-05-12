@@ -1,9 +1,11 @@
-export function get_cookie(cookie_name) {
-  console.log('redux/user/helper.js function "get_cookie(cookie_name)"');
+export function getCookie(name) {
+  console.log('redux/user/helper.js function "getCookie(name)"');
+  console.log('document.cookie', document.cookie);
 
-  const results = document.cookie.match(
-    '(^|;) ?' + cookie_name + '=([^;]*)(;|$)',
-  );
+  const results = document.cookie
+    .match('(^|;) ?' + name + '=([^;]*)(;|$)');
+
+  console.log('results', results);
 
   if (results)
     return unescape(results[2]);
@@ -25,7 +27,8 @@ export async function getUserIP() {
       .trim()
       .split('\n')
       .filter(item => item.includes('ip'))[0];
-    const ip = textStringWithIP.slice(textStringWithIP.indexOf('=') + 1);
+    const ip = textStringWithIP
+      .slice(textStringWithIP.indexOf('=') + 1);
 
     return ip;
   } catch (error) {

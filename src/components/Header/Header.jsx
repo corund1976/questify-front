@@ -1,20 +1,19 @@
-import s from './Header.module.css';
-import Container from '../Container';
-import ModalWindow from '../modal/ModalWindow/index';
-import icons from '../../icons/sprite.svg';
-import ChallengeModal from '../modal/ChallengeHeaderModal/index';
-
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Avatar from '@mui/material/Avatar';
 import { blueGrey } from '@mui/material/colors';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { useEffect } from 'react';
+
+import Container from '../Container';
+import ModalWindow from '../modal/ModalWindow';
+import ChallengeModal from '../modal/ChallengeHeaderModal';
 
 import { getUser } from '../../redux/user/selectors';
 import { userLogout } from '../../redux/user/operation';
-
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { error } from '../../redux/todos/todosSelector';
+
+import icons from '../../icons/sprite.svg';
+import s from './Header.module.css';
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,6 +21,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
   const err = useSelector(error);
+
   const toggleModal = () => setShowModal(prevState => !prevState);
 
   const challengeModal = () => {

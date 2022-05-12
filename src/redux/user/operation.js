@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from './interceptor';
-import { get_cookie } from './helper';
+import { getCookie } from './helper';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -65,9 +65,7 @@ export const userLogin = createAsyncThunk(
       token.set(data.accessToken);
       return data;
     } catch (error) {
-
       return thunkAPI.rejectWithValue(error);
-
     }
   },
 );
@@ -78,7 +76,7 @@ export const userLogout = createAsyncThunk(
     try {
       localStorage.removeItem('isloggedIn');
 
-      const token = get_cookie('refreshToken');
+      const token = getCookie('refreshToken');
       const { data } = await api.get(
         `${BASE_URL}/users/logout`,
         {
@@ -112,7 +110,9 @@ export const userRefresh = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
+    console.log('operations.js state =', state);
     const persistedToken = state.user.token;
+    console.log('operations.js persistedToken =', persistedToken);
 
     if (!persistedToken) {
       return thunkAPI.rejectWithValue('User is logged out');
@@ -121,7 +121,8 @@ export const userRefresh = createAsyncThunk(
     token.set(persistedToken);
 
     try {
-      const token = get_cookie('refreshToken');
+      const token = getCookie('refreshToken');
+      console.log('token = ', token);
       const { data } = await axios.get(
         `${BASE_URL}/users/refresh`,
         {
@@ -133,6 +134,7 @@ export const userRefresh = createAsyncThunk(
       );
       localStorage.setItem('token', data.accessToken);
       document.cookie = `refreshToken=${data.refreshToken}`;
+      console.log('document.cookie', document.cookie);
 
       return data;
     } catch (error) {
