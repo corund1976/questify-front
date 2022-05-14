@@ -1,8 +1,9 @@
 const routes = {
   auth: '/auth',
   home: '/home',
-  reset: '/reset',
-  changePassword: '/api/users/change-password/:link',
+  resetPassword: '/reset-password',
+  changePassword: '/change-password',
+  // changePassword: '/api/users/change-password/:link',
 };
 
 export default routes;

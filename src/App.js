@@ -14,24 +14,19 @@ const AuthPage = lazy(() =>
 const HomePage = lazy(() =>
   import('./pages/HomePage' /* webpackChunkName: 'HomePage' */),
 );
-const ResetPage = lazy(() =>
-  import('./pages/ResetPasswordPage' /* webpackChunkName: 'HomePage' */),
+const ResetPasswordPage = lazy(() =>
+  import('./pages/ResetPasswordPage' /* webpackChunkName: 'ResetPasswordPage' */),
 );
-const ChangePassword = lazy(() =>
-  import('./pages/ChangePasswordPage' /* webpackChunkName: 'HomePage' */),
+const ChangePasswordPage = lazy(() =>
+  import('./pages/ChangePasswordPage' /* webpackChunkName: 'ChangePasswordPage' */),
 );
 
 function App() {
-  console.log("App.js");
-
   const dispatch = useDispatch();
-  // const isUserLoggedIn = useSelector(getIsLoggedIn);
   const userLoggedIn = localStorage.getItem('isloggedIn');
 
   useEffect(() => {
     if (userLoggedIn) dispatch(userRefresh());
-    console.log('userLoggedIn', userLoggedIn);
-    console.log('App.js useEffect dispatch(userRefresh())');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
@@ -49,12 +44,12 @@ function App() {
             <AuthPage />
           </PublicRoute>
 
-          <PublicRoute path={routes.reset} restricted>
-            <ResetPage />
+          <PublicRoute path={routes.resetPassword} restricted>
+            <ResetPasswordPage />
           </PublicRoute>
 
           <PublicRoute path={routes.changePassword} restricted>
-            <ChangePassword />
+            <ChangePasswordPage />
           </PublicRoute>
 
           <PrivateRoute path={routes.home} restricted redirectTo={routes.auth}>

@@ -10,9 +10,9 @@ import Container from "../../components/Container";
 import { userChangePassword} from '../../redux/user/operation'
 import { getError } from '../../redux/user/selectors';
 
-import s from "./ChangePassword.module.css";
+import s from "./ChangePasswordPage.module.css";
 
-function ChangePassword() {
+function ChangePasswordPage() {
   const dispatch = useDispatch();
   const error = useSelector(getError)
   const history = useHistory();
@@ -127,4 +127,4 @@ function ChangePassword() {
   );
 }
 
-export default ChangePassword;
+export default ChangePasswordPage;

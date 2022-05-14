@@ -7,9 +7,9 @@ import Container from "../../components/Container";
 import { userResetPassword} from '../../redux/user/operation'
 import { getError } from '../../redux/user/selectors';
 
-import s from "./ResetPassword.module.css";
+import s from "./ResetPasswordPage.module.css";
 
-function ResetPassword() {
+function ResetPasswordPage() {
   const dispatch = useDispatch();
   const error = useSelector(getError)
   const history = useHistory();
@@ -97,4 +97,4 @@ function ResetPassword() {
   );
 }
 
-export default ResetPassword;
+export default ResetPasswordPage;
