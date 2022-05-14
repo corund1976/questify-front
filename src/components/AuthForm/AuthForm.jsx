@@ -147,7 +147,7 @@ function AuthForm({ showRegisterForm, host }) {
       
       {/* <p className={s.errorMessage}>{passwordError}</p> */}
 
-      <Link to="/reset" className={s.forgotPassword}>
+      <Link to="/reset-password" className={s.forgotPassword}>
         Forgot Password?
       </Link>
       {/* К Н О П К А   g o ! */}
