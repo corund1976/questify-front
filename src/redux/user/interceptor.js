@@ -1,19 +1,22 @@
-import axios from "axios";
+import axios from 'axios';
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const api = axios.create({
   withCredentials: true,
-  baseURL: "http://questify-project.herokuapp.com/api/users",
+  baseURL: `${BASE_URL}/users`,
 });
 
 api.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  const accessToken = localStorage.getItem('accessToken');
+
+  config.headers.Authorization = `Bearer ${accessToken}`;
   return config;
 });
 
-api.interceptors.response.use(
-  (config) => {
-    return config;
-  },
+api.interceptors.response.use((config) => {
+  return config;
+},
   async (error) => {
     const originalRequest = error.config;
 
@@ -26,12 +29,12 @@ api.interceptors.response.use(
 
       try {
         const response = await axios.get(
-          "http://questify-back.herokuapp.com/api/users",
+          `${BASE_URL}/users`,
           {
             withCredentials: true,
           }
         );
-        localStorage.setItem("token", response.data.accessToken);
+        localStorage.setItem('accessToken', response.data.accessToken);
         return api.request(originalRequest);
       } catch (e) {
       }

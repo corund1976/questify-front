@@ -13,7 +13,7 @@ function AuthPage() {
   console.log('AuthPage.jsx');
 
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const [host, sethost] = useState('')
+  const [host, setHost] = useState('')
 
   const showRegForm = () => setShowRegisterForm(true);
   const showLogForm = () => setShowRegisterForm(false);
@@ -21,26 +21,26 @@ function AuthPage() {
   const authErr = useSelector(getError);
 
   useEffect(() => {
-    async function fetchData() {
-      const get = localStorage.getItem('get');
-      console.log('AuthPage.jsx => localStorage.getItem("get")', get);
+    async function getIPAndSetHost() {
+      const userIP = localStorage.getItem('userIP');
+      console.log('AuthPage.jsx => localStorage.getItem("userIP")', userIP);
     
-      if (get === null) { 
-        const result = await getUserIP()
+      if (!userIP) { 
+        const result = await getUserIP();
         // const ip = window.btoa(result)
-        const ip = result
+        const ip = result;
 
-        sethost(ip)
+        setHost(ip);
+        
+        localStorage.setItem('userIP', true);
       }
-    
-      localStorage.setItem('get', true);
     }
-    
-    fetchData()
+
+    getIPAndSetHost();
   }, [])
   
   window.onbeforeunload = function () {
-    localStorage.removeItem('get');
+    localStorage.removeItem('userIP');
     return '';
   }
 

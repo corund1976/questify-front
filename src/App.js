@@ -23,10 +23,12 @@ const ChangePasswordPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
-  const userLoggedIn = localStorage.getItem('isloggedIn');
+  const userIsLoggedIn = localStorage.getItem('userIsLoggedIn');
 
   useEffect(() => {
-    if (userLoggedIn) dispatch(userRefresh());
+    if (userIsLoggedIn) {
+      dispatch(userRefresh());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 

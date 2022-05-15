@@ -1,12 +1,12 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 import api from './interceptor';
 import { getCookie } from './helper';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-const token = {
+const axiosHeaderAccessToken = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -17,7 +17,6 @@ const token = {
 
 export const userRegistration = createAsyncThunk(
   'auth/registration',
-
   async ({ host, ...user }, thunkAPI) => {
     try {
       const { data } = await axios.post(
@@ -30,7 +29,7 @@ export const userRegistration = createAsyncThunk(
           },
         }
       );
-      token.set(data.accessToken);
+      axiosHeaderAccessToken.set(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -40,7 +39,6 @@ export const userRegistration = createAsyncThunk(
 
 export const userLogin = createAsyncThunk(
   'auth/login',
-
   async ({ host, ...user }, thunkAPI) => {
     try {
       console.log('operations =>');
@@ -57,12 +55,10 @@ export const userLogin = createAsyncThunk(
         }
       );
       console.log('data', data);
-      localStorage.setItem('token', data.accessToken);
-      localStorage.setItem('isloggedIn', true);
-
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('userIsLoggedIn', true);
       document.cookie = `refreshToken=${data.refreshToken}`;
-
-      token.set(data.accessToken);
+      axiosHeaderAccessToken.set(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -74,22 +70,21 @@ export const userLogout = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      localStorage.removeItem('isloggedIn');
-
-      const token = getCookie('refreshToken');
+      const refreshTokenFromCookie = getCookie('refreshToken');
+      console.log('refreshTokenFromCookie = ', refreshTokenFromCookie);
       const { data } = await api.get(
         `${BASE_URL}/users/logout`,
         {
           withCredentials: true,
           headers: {
-            update: `${token}`,
+            update: `${refreshTokenFromCookie}`,
           },
         }
       );
       document.cookie = 'refreshToken=-1;expires=Thu, 01 Jan 1970 00:00:01 GMT';
-      // token.unset();
-      localStorage.removeItem('token');
-
+      // axiosHeaderAccessToken.unset();
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('userIsLoggedIn');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -111,29 +106,31 @@ export const userRefresh = createAsyncThunk(
   async (_, thunkAPI) => {
     console.log('operations.js userRefresh');
     const state = thunkAPI.getState();
-    console.log('operations.js state =', state);
+    console.log('operations.js state.user =', state.user);
     const persistedToken = state.user.token;
     console.log('operations.js persistedToken =', persistedToken);
 
-    if (!persistedToken) {
+    if (persistedToken === null) {
+      console.log('Токена нет, уходим из userRefresh');
       return thunkAPI.rejectWithValue('User is logged out');
     }
 
-    token.set(persistedToken);
+    axiosHeaderAccessToken.set(persistedToken);
 
     try {
-      const token = getCookie('refreshToken');
-      console.log('token = ', token);
+      const refreshTokenFromCookie = getCookie('refreshToken');
+      console.log('refreshTokenFromCoockie = ', refreshTokenFromCookie);
+
       const { data } = await axios.get(
         `${BASE_URL}/users/refresh`,
         {
           withCredentials: true,
           headers: {
-            update: `${token}`,
+            update: `${refreshTokenFromCookie}`,
           },
         }
       );
-      localStorage.setItem('token', data.accessToken);
+      localStorage.setItem('accessToken', data.accessToken);
       document.cookie = `refreshToken=${data.refreshToken}`;
       console.log('document.cookie', document.cookie);
 

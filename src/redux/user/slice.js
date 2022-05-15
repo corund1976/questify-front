@@ -24,11 +24,19 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: {
-    // [userRegistration.fulfilled]: (state, action) => action.payload.user,
+    [userRegistration.fulfilled]: (state, action) => action.payload.user,
+
+    [userRegistration.rejected]: (state, action) => {
+      state.error = {
+        status: action.payload.status,
+        message: action.payload.response.data.message,
+      };
+    },
+
     [userLogin.fulfilled]: (state, action) => {
       state.userinfo = action.payload.user;
-      state.token = action.payload.accessToken;
       state.userinfo.isLoggedIn = true;
+      state.token = action.payload.accessToken;
     },
 
     [userLogin.rejected]: (state, action) => {
@@ -40,15 +48,6 @@ const userSlice = createSlice({
     [userLogout.fulfilled]: (state, action) => initialState,
 
     [userLogout.rejected]: (state, action) => {
-      state.error = {
-        status: action.payload.status,
-        message: action.payload.response.data.message,
-      };
-    },
-
-    [userRegistration.fulfilled]: (state, action) => action.payload.user,
-
-    [userRegistration.rejected]: (state, action) => {
       state.error = {
         status: action.payload.status,
         message: action.payload.response.data.message,
@@ -75,7 +74,7 @@ const userSlice = createSlice({
     [userResetPassword.rejected]: (state, action) => {
       state.error = {
         status: action.payload.status,
-        message: action.payload.response.data.message, // fix this rout everyvere
+        message: action.payload.response.data.message,
       };
     },
 
@@ -86,7 +85,7 @@ const userSlice = createSlice({
     [userChangePassword.rejected]: (state, action) => {
       state.error = {
         status: action.payload.status,
-        message: action.payload.response.data.message, // fix this rout everyvere
+        message: action.payload.response.data.message,
       };
     },
   },
