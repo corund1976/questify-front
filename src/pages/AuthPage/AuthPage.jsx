@@ -27,11 +27,12 @@ function AuthPage() {
     
       if (!userIP) { 
         const result = await getUserIP();
+        console.log('AuthPage.jsx => await getUserIP()', result);
         // const ip = window.btoa(result)
         const ip = result;
 
         setHost(ip);
-        
+
         localStorage.setItem('userIP', true);
       }
     }
