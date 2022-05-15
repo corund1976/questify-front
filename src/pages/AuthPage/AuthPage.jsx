@@ -21,11 +21,11 @@ function AuthPage() {
   const authErr = useSelector(getError);
 
   useEffect(() => {
-    async function getIPAndSetHost() {
-      const userIP = localStorage.getItem('userIP');
-      console.log('AuthPage.jsx => localStorage.getItem("userIP")', userIP);
+    async function checkUserIP() {
+      const userIPChecked = localStorage.getItem('userIPChecked');
+      console.log('AuthPage.jsx => localStorage.getItem("userIP")', userIPChecked);
     
-      if (!userIP) { 
+      if (!userIPChecked) { 
         const result = await getUserIP();
         console.log('AuthPage.jsx => await getUserIP()', result);
         // const ip = window.btoa(result)
@@ -33,15 +33,15 @@ function AuthPage() {
 
         setHost(ip);
 
-        localStorage.setItem('userIP', true);
+        localStorage.setItem('userIPChecked', true);
       }
     }
 
-    getIPAndSetHost();
+    checkUserIP();
   }, [])
   
   window.onbeforeunload = function () {
-    localStorage.removeItem('userIP');
+    localStorage.removeItem('userIPChecked');
     return '';
   }
 
