@@ -23,16 +23,12 @@ function AuthPage() {
   useEffect(() => {
     async function checkUserIP() {
       const userIPChecked = localStorage.getItem('userIPChecked');
-      console.log('AuthPage.jsx => localStorage.getItem("userIP")', userIPChecked);
     
       if (!userIPChecked) { 
-        const result = await getUserIP();
-        console.log('AuthPage.jsx => await getUserIP()', result);
-        // const ip = window.btoa(result)
-        const ip = result;
+        const ip = await getUserIP();
+        const base64EncodedIP = window.btoa(ip);
 
-        setHost(ip);
-
+        setHost(base64EncodedIP);
         localStorage.setItem('userIPChecked', true);
       }
     }
